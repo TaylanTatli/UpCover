@@ -8,7 +8,7 @@ import {
   Settings,
 } from "lucide-react";
 import { Icon } from "@iconify/react";
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -159,12 +159,10 @@ export default function CoverMaker() {
     if (!coverRef.current) return;
     setIsDownloading(true);
     try {
-      const canvas = await html2canvas(coverRef.current, {
-        scale: 1, // Strictly 1 to ensure 110x135 output
-        useCORS: true,
-        backgroundColor: null,
+      const dataUrl = await toPng(coverRef.current, {
+        pixelRatio: 1,
+        cacheBust: true,
       });
-      const dataUrl = canvas.toDataURL("image/png");
       const link = document.createElement("a");
       link.download = `upcover-${Date.now()}.png`;
       link.href = dataUrl;
@@ -172,7 +170,7 @@ export default function CoverMaker() {
     } catch (err) {
       console.error("Failed to generate cover image", err);
       alert(
-        "Failed to generate image. Ensure CORS is supported if using external images.",
+        "Failed to generate image. There might be an issue with external resources."
       );
     } finally {
       setIsDownloading(false);
