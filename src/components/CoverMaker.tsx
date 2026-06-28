@@ -100,6 +100,7 @@ export default function CoverMaker() {
   const [iconColor, setIconColor] = useState("#ffffff");
   const [iconSize, setIconSize] = useState([48]);
   const [bgImage, setBgImage] = useState<string | null>(null);
+  const [isApplyingImage, setIsApplyingImage] = useState(false);
 
   // Icon Search
   const [iconSearch, setIconSearch] = useState("");
@@ -242,6 +243,24 @@ export default function CoverMaker() {
       alert(err.message || "Failed to fetch images.");
     } finally {
       setIsSearching(false);
+    }
+  };
+
+  const handleSelectImage = async (url: string) => {
+    setIsApplyingImage(true);
+    try {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBgImage(reader.result as string);
+        setIsApplyingImage(false);
+      };
+      reader.readAsDataURL(blob);
+    } catch (err) {
+      console.error("Failed to load image via fetch", err);
+      setBgImage(url); // Fallback
+      setIsApplyingImage(false);
     }
   };
 
@@ -475,8 +494,9 @@ export default function CoverMaker() {
                 {photos.map((img: any) => (
                   <button
                     key={img.id}
-                    onClick={() => setBgImage(img.full)}
-                    className="relative aspect-[110/135] rounded-lg overflow-hidden border-2 border-transparent hover:border-primary transition-all group"
+                    onClick={() => handleSelectImage(img.full)}
+                    disabled={isApplyingImage}
+                    className="relative aspect-[110/135] rounded-lg overflow-hidden border-2 border-transparent hover:border-primary transition-all group disabled:opacity-50"
                   >
                     <img
                       src={img.thumb}
