@@ -52,4 +52,4 @@ This will generate highly optimized static files in the `dist` directory.
 
 ## 📝 License
 
-MIT License. Not officially affiliated with UpNote.
+AGPL-3.0 License. Not officially affiliated with UpNote.
