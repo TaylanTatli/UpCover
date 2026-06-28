@@ -1,4 +1,8 @@
-# UpCover 🎨
+<div align="center">
+  <img src="./src/assets/TextLogo.svg" alt="UpCover Logo" height="60" />
+</div>
+
+<br />
 
 UpCover is a lightweight, one-page web application designed to help you quickly generate beautiful, pixel-perfect (110x135) covers for your [UpNote](https://getupnote.com/) notebooks.
 
