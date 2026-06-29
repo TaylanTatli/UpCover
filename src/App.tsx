@@ -69,10 +69,24 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="py-6 border-t mt-auto">
-        <div className="container text-center text-sm text-muted-foreground mx-auto">
-          Built with React, Vite & Tailwind CSS. Not officially affiliated with
-          UpNote.
+      <footer className="py-8 border-t mt-auto">
+        <div className="container flex flex-col items-center gap-4 text-center text-sm text-muted-foreground mx-auto">
+          <a
+            href="https://www.buymeacoffee.com/taylantatli"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block hover:scale-105 transition-transform"
+          >
+            <img
+              src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=taylantatli&button_colour=FFDD00&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=ffffff"
+              alt="Buy Me A Coffee"
+              className="h-10 w-auto"
+            />
+          </a>
+          <div>
+            Built with React, Vite & Tailwind CSS. Not officially affiliated
+            with UpNote.
+          </div>
         </div>
       </footer>
     </div>

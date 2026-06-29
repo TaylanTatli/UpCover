@@ -52,7 +52,15 @@ This will generate highly optimized static files in the `dist` directory.
 - **Styling**: Tailwind CSS v4
 - **Components**: shadcn/ui (Radix Primitives)
 - **Icons**: @iconify/react
-- **Export**: html2canvas
+- **Export**: html-to-image
+
+## 💖 Support
+
+If you find this tool helpful and want to support its development, you can buy me a coffee!
+
+<a href="https://www.buymeacoffee.com/taylantatli" target="_blank">
+  <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=taylantatli&button_colour=FFDD00&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=ffffff" alt="Buy Me A Coffee" />
+</a>
 
 ## 📝 License
 
