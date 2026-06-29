@@ -59,7 +59,7 @@ This will generate highly optimized static files in the `dist` directory.
 If you find this tool helpful and want to support its development, you can buy me a coffee!
 
 <a href="https://www.buymeacoffee.com/taylantatli" target="_blank">
-  <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=taylantatli&button_colour=FFDD00&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=ffffff" alt="Buy Me A Coffee" />
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40" />
 </a>
 
 ## 📝 License
