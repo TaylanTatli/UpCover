@@ -95,6 +95,7 @@ const POPULAR_ICONS = [
 
 export default function CoverMaker() {
   const [bgColor, setBgColor] = useState("#1f2937");
+  const [isTransparentBg, setIsTransparentBg] = useState(false);
   const [showIcon, setShowIcon] = useState(true);
   const [iconName, setIconName] = useState("lucide:book");
   const [iconColor, setIconColor] = useState("#ffffff");
@@ -282,8 +283,26 @@ export default function CoverMaker() {
           >
             {/* Background Color */}
             <div className="space-y-3">
-              <Label>Background Color</Label>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex justify-between items-center">
+                <Label>Background Color</Label>
+                <div className="flex items-center gap-2">
+                  <Label
+                    htmlFor="transparent-bg"
+                    className="text-xs text-muted-foreground font-normal"
+                  >
+                    Transparent
+                  </Label>
+                  <Switch
+                    id="transparent-bg"
+                    checked={isTransparentBg}
+                    onCheckedChange={(checked) => {
+                      setIsTransparentBg(checked);
+                      if (checked) setBgImage(null);
+                    }}
+                  />
+                </div>
+              </div>
+              <div className={`flex flex-wrap gap-2 transition-opacity ${isTransparentBg ? 'opacity-50 pointer-events-none' : ''}`}>
                 {PRESET_COLORS.map((color) => (
                   <button
                     key={color}
@@ -297,8 +316,8 @@ export default function CoverMaker() {
                   />
                 ))}
               </div>
-              <div className="flex items-center gap-3 pt-1">
-                <Label className="text-muted-foreground text-sm font-normal">
+              <div className={`flex items-center gap-3 pt-1 transition-opacity ${isTransparentBg ? 'opacity-50 pointer-events-none' : ''}`}>
+                <Label className="text-muted-foreground text-xs font-normal w-12">
                   Custom:
                 </Label>
                 <div
@@ -532,21 +551,21 @@ export default function CoverMaker() {
 
         {/* The Cover Canvas */}
         <div
-          className="relative rounded-sm overflow-hidden shadow-2xl ring-1 ring-black/10 transition-all duration-300 flex items-center justify-center"
+          className={`relative rounded-sm overflow-hidden shadow-2xl ring-1 ring-black/10 transition-all duration-300 flex items-center justify-center ${isTransparentBg && !bgImage ? 'bg-[url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/QNzMgN4wDDSQAAH/IfJ82DQBAACvEQoB0R2gJQAAAABJRU5ErkJggg==")]' : ''}`}
           style={{
             width: 110,
             height: 135,
-            backgroundColor: bgImage ? "transparent" : bgColor,
+            backgroundColor: bgImage || isTransparentBg ? "transparent" : bgColor,
           }}
         >
-          {/* We wrap the content in a div for html2canvas to reliably capture it */}
+          {/* We wrap the content in a div for html-to-image to reliably capture it */}
           <div
             ref={coverRef}
-            className="absolute inset-0 flex items-center justify-center overflow-hidden bg-background"
+            className="absolute inset-0 flex items-center justify-center overflow-hidden"
             style={{
               width: 110,
               height: 135,
-              backgroundColor: bgImage ? "transparent" : bgColor,
+              backgroundColor: bgImage || isTransparentBg ? "transparent" : bgColor,
             }}
           >
             {bgImage && (
